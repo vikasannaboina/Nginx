@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Displaying an Image on Your Web Server</title>
+    <title>Album Viewer</title>
+    <style>
+      /* Style the thumbnail images */
+      .thumbnail {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin: 10px;
+        cursor: pointer;
+      }
+      /* Style the container for the thumbnails */
+      .thumbnails {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      /* Style the larger view of the image */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 1000px;
+      }
+      .modal-img {
+        width: 100%;
+        height: auto;
+      }
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <h1>Beautiful Picture</h1>
-    <img src="/home/ubuntu/test.jpg" alt="Beautiful Picture">
+    <h1>My Album Viewer</h1>
+    <!-- Container for the thumbnail images -->
+    <div class="thumbnails">
+      <img src="/home/ubuntu/nginx_pics_loader/IMG_2303.JPG" alt="Image 1" class="thumbnail" onclick="openModal(this);">
+      <img src="/home/ubuntu/nginx_pics_loader/IMG_2305.JPG" class="thumbnail" onclick="openModal(this);">
+      <img src="/home/ubuntu/nginx_pics_loader/IMG_5145.PNG" class="thumbnail" onclick="openModal(this);">
+      <!-- Add more thumbnail images here -->
+    </div>
+    <!-- Modal for the larger view of the image -->
+    <div id="myModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img src="" alt="" class="modal-img">
+    </div>
+    <!-- JavaScript to open and close the modal -->
+    <script>
+      function openModal(img) {
+        document.getElementById("myModal").style.display = "block";
+        document.querySelector(".modal-img").src = img.src;
+      }
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+    </script>
   </body>
 </html>
