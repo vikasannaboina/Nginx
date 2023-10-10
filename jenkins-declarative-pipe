@@ -1,3 +1,4 @@
+currentBuild.displayName = "vikas-declarativepipe #"+currentBuild.number+currentBuild.currentResult
 pipeline{
     agent any
     environment{
