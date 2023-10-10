@@ -1,9 +1,17 @@
 pipeline{
     agent any
+    environment{
+        PATH = "/usr/share/maven/bin:$PATH"
+    }
     stages{
         stage("GIT-Checkout"){
             steps{
                git branch: 'main', credentialsId: 'github', url: 'https://github.com/vikasannaboina/Nginx.git'
+            }
+        }
+        stage("Maven-build"){
+            steps{
+               sh "mvn clean package"
             }
         }
     }
